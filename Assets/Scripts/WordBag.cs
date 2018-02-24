@@ -71,7 +71,6 @@ namespace BabylonJam
                     {
                         slots[i].IsEmpty = false;
 
-                        Debug.Log("Returned Position: " + slots[i].Position);
                         return slots[i].Position;
                     }
                 }
