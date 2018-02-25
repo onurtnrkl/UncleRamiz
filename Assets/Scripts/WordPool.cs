@@ -16,40 +16,31 @@ namespace BabylonJam
 {
     internal class WordPool
     {
-        private readonly List<GameObject> words;
-        private readonly int size;
+        private readonly List<Word> words;
 
-        public WordPool(int size)
+        public WordPool()
         {
-            this.size = size;
-            words = new List<GameObject>();
+            words = new List<Word>();
             GameObject prefab = Resources.Load<GameObject>("Prefabs/Word");
 
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < 9; i++)
             {
-                GameObject word = Object.Instantiate(prefab);
-                word.SetActive(false);
+                Word word = Object.Instantiate(prefab).GetComponent<Word>();
+                word.gameObject.SetActive(false);
                 words.Add(word);
             }
         }
 
-        public void Spawn(Vector2 position)
-        {
-            GameObject word = GetWord;
-            word.transform.position = position;
-            word.SetActive(true);
-        }
-
-        private GameObject GetWord
+        public Word GetWord
         {
             get
             {
-                for (int i = 0; i < size; i++)
+                for (int i = 0; i < 9; i++)
                 {
-                    GameObject word = words[i];
+                    Word word = words[i];
 
-                    if (!word.activeInHierarchy)
-                        return word;
+                    if (!word.gameObject.activeInHierarchy)
+                        return word;                       
                 }
 
                 return null;

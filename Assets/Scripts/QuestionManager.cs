@@ -25,6 +25,7 @@ namespace BabylonJam
         }
 
         private QuestionList list;
+        private WordPool pool;
 
         private void Awake()
         {
@@ -32,19 +33,30 @@ namespace BabylonJam
             else Destroy(gameObject);
 
             list = DatabaseManager.Read<QuestionList>("QuestionList");
-        }
+            pool = new WordPool();
 
-        private Question GetQuestion(int id)
-        {
-            return list[id];
+            //gameObject.SetActive(false);
         }
 
         public void AskQuestion(int id)
         {
-            //Open Question panel
-            //Get data from database
-            //draw question panels
+            Question question = list[id];
+
+            AddWordsToBag(question.Words);
+            SentenceBar.Instance.SetAnswer(question.Answer);
             gameObject.SetActive(true);
+        }
+
+        private void AddWordsToBag(string[] words)
+        {
+            for (int i = 0; i < words.Length; i++)
+            {
+                Word word = pool.GetWord;
+                word.Text = words[i];
+                word.gameObject.SetActive(true);
+                word.SetBagIndex(i);
+                word.Move(WordBag.Instance.SlotPosition(i), WordBag.Instance.transform);
+            }
         }
     }
 }

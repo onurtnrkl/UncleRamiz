@@ -8,7 +8,7 @@ Copyright (c) 2018 Onur Tanrikulu. All rights reserved.
 ================================================================*/
 #endregion
 
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BabylonJam
@@ -25,33 +25,44 @@ namespace BabylonJam
             }
         }
 
-        float width = 0;
+        private string[] answer;
+        private List<string> current;
 
-        public void RegisterRect(RectTransform rect)
+        public void SetAnswer(string[] answer)
         {
-            if ((int)width == 0)
-                width += rect.sizeDelta.x / 2;
-            else
-                width += rect.sizeDelta.x + 10;
+            this.answer = answer;
+            current.Clear();
         }
 
-        public void UnRegisterRect(RectTransform rect)
+        public void RegisterWord(string word)
         {
-            width -= rect.sizeDelta.x/2 - 10;
+            current.Add(word);
+            Debug.Log(word + " registered.");
+            Debug.Log("current length= " + (current.Count));
         }
 
-        private void Awake()
+        public void UnRegisterWord(string word)
         {
-            if (instance == null) instance = this;
-            else Destroy(gameObject);
+            current.Remove(word);
         }
 
         public Vector2 SlotPosition
         {
             get
             {
-                return new Vector2(width, 550);  
+                float x = (260 * current.Count) + 150;
+                float y = transform.position.y;
+
+                return new Vector2(x, y);
             }
+        }
+
+        private void Awake()
+        {
+            if (instance == null) instance = this;
+            else Destroy(gameObject);
+
+            current = new List<string>();
         }
     }
 }

@@ -16,26 +16,26 @@ namespace BabylonJam
     internal class Question
     {
         public string[] Answer;
-        public string[] Sentences;
+        public string[] Words;
 
         public Question()
         {
-            Sentences = new string[9];
+            Words = new string[9];
             Answer = new string[3];
 
             Answer[0] = "Who";
             Answer[1] = "are";
             Answer[2] = "you";
 
-            Sentences[0] = "is";
-            Sentences[1] = "Why";
-            Sentences[2] = "Who";
-            Sentences[3] = "My";
-            Sentences[4] = "are";
-            Sentences[5] = "they";
-            Sentences[6] = "our";
-            Sentences[7] = "am";
-            Sentences[8] = "you";
+            Words[0] = "is";
+            Words[1] = "Why";
+            Words[2] = "Who";
+            Words[3] = "My";
+            Words[4] = "are";
+            Words[5] = "they";
+            Words[6] = "our";
+            Words[7] = "am";
+            Words[8] = "you";
         }
     }
 }

@@ -18,7 +18,8 @@ namespace BabylonJam
     {
         public void OnPointerClick(PointerEventData pointerEventData)
         {
-            SpeechBubbleManager.Open(GetComponent<RectTransform>(), "Who? Who? Are you talking to me?");
+            //SpeechBubbleManager.Open(GetComponent<RectTransform>(), "Who? Who? Are you talking to me?");
+            QuestionManager.Instance.AskQuestion(0);
         }
     }    
 }

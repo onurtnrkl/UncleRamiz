@@ -60,23 +60,9 @@ namespace BabylonJam
             }
         }
 
-
-        public Vector2 EmptyPosition
+        public Vector2 SlotPosition(int index)
         {
-            get
-            {
-                for (int i = 0; i < 9; i++)
-                {
-                    if (slots[i].IsEmpty)
-                    {
-                        slots[i].IsEmpty = false;
-
-                        return slots[i].Position;
-                    }
-                }
-
-                return Vector2.zero;
-            }
+            return slots[index].Position;
         }
     }
 }
