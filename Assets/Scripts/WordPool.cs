@@ -37,7 +37,6 @@ namespace BabylonJam
         {
             for (int i = 0; i < words.Count; i++)
             {
-                Debug.Log(i + " reseted.");
                 words[i].gameObject.SetActive(false);
                 words[i].transform.SetParent(poolObject);
             }

@@ -26,6 +26,7 @@ namespace BabylonJam
 
         private QuestionList list;
         private WordPool pool;
+        private Animator animator;
 
         private void Awake()
         {
@@ -34,22 +35,24 @@ namespace BabylonJam
 
             list = DatabaseManager.Read<QuestionList>("QuestionList");
             pool = new WordPool();
+            animator = GetComponent<Animator>();
+            ResetContext();
 
             //gameObject.SetActive(false);
         }
 
         public void ResetContext()
         {
+            animator.SetBool("IsOpen", false);
             pool.Reset();
         }
 
         public void AskQuestion(int id)
         {
             Question question = list[id];
-
             AddWordsToBag(question.Words);
             SentenceBar.Instance.SetAnswer(question.Answer);
-            gameObject.SetActive(true);
+            animator.SetBool("IsOpen", true);
         }
 
         private void AddWordsToBag(string[] words)
