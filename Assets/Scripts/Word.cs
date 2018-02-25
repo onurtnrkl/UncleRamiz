@@ -62,12 +62,12 @@ namespace BabylonJam
             if (onBag)
             {
                 Vector2 position = SentenceBar.Instance.SlotPosition;
-                SentenceBar.Instance.RegisterWord(Text);
+                SentenceBar.Instance.RegisterWord(this);
                 Move(position, SentenceBar.Instance.transform);
             }
             else
             {
-                SentenceBar.Instance.UnRegisterWord(Text);
+                SentenceBar.Instance.UnRegisterWord(this);
                 Move(WordBag.Instance.SlotPosition(bagIndex), WordBag.Instance.transform);
             }
         }

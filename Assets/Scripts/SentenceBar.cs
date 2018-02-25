@@ -26,7 +26,7 @@ namespace BabylonJam
         }
 
         private string[] answer;
-        private List<string> current;
+        private List<Word> current;
 
         public void SetAnswer(string[] answer)
         {
@@ -34,26 +34,38 @@ namespace BabylonJam
             current.Clear();
         }
 
-        public void RegisterWord(string word)
+        public void RegisterWord(Word word)
         {
             current.Add(word);
             Debug.Log(word + " registered.");
             Debug.Log("current length= " + (current.Count));
         }
 
-        public void UnRegisterWord(string word)
+        public void UnRegisterWord(Word word)
         {
             current.Remove(word);
+            FixedPosition();
+        }
+
+        private void FixedPosition()
+        {
+            for (int i = 0; i < current.Count; i++)
+                current[i].transform.position = IndexPosition(i);
+        }
+
+        private Vector2 IndexPosition(int index)
+        {
+            float x = (260 * index) + 150;
+            float y = transform.position.y;
+
+            return new Vector2(x, y);
         }
 
         public Vector2 SlotPosition
         {
             get
             {
-                float x = (260 * current.Count) + 150;
-                float y = transform.position.y;
-
-                return new Vector2(x, y);
+                return IndexPosition(current.Count);
             }
         }
 
@@ -62,7 +74,7 @@ namespace BabylonJam
             if (instance == null) instance = this;
             else Destroy(gameObject);
 
-            current = new List<string>();
+            current = new List<Word>();
         }
     }
 }
