@@ -17,7 +17,6 @@ namespace BabylonJam
     internal class Word : MonoBehaviour, IPointerClickHandler
     {
         private RectTransform rect;
-        private LayoutElement layout;
         private Text text;
         private Vector2 target;
         private int bagIndex = -1;
@@ -53,22 +52,37 @@ namespace BabylonJam
         private void Awake()
         {
             rect = GetComponent<RectTransform>();
-            layout = GetComponent<LayoutElement>();
             text = GetComponentInChildren<Text>();
+        }
+
+        private void OnDisable()
+        {
+            target = transform.position;
+            onBag = true;
+            isMoving = false;
+        }
+
+        public void GoToBag()
+        {
+            SentenceBar.Instance.UnRegisterWord(this);
+            Move(WordBag.Instance.SlotPosition(bagIndex), WordBag.Instance.transform);
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
             if (onBag)
             {
+                if (SentenceBar.Instance.MaxSentence) return;
+
                 Vector2 position = SentenceBar.Instance.SlotPosition;
                 SentenceBar.Instance.RegisterWord(this);
+                SentenceBar.Instance.Busy = true;
                 Move(position, SentenceBar.Instance.transform);
             }
             else
             {
-                SentenceBar.Instance.UnRegisterWord(this);
-                Move(WordBag.Instance.SlotPosition(bagIndex), WordBag.Instance.transform);
+                if (SentenceBar.Instance.Busy) return;
+                GoToBag();
             }
         }
 
@@ -80,9 +94,16 @@ namespace BabylonJam
 
                 if(Vector2.Distance(transform.position, target) < 1f)
                 {
-                    layout.ignoreLayout = onBag;
                     transform.position = target;
-                    isMoving = false;                   
+                    isMoving = false;
+
+                    if (!onBag)
+                    {
+                        SentenceBar.Instance.Busy = false;
+
+                        if (SentenceBar.Instance.MaxSentence)
+                            SentenceBar.Instance.CheckAnswer();
+                    }
                 }
             }
         }

@@ -38,6 +38,11 @@ namespace BabylonJam
             //gameObject.SetActive(false);
         }
 
+        public void ResetContext()
+        {
+            pool.Reset();
+        }
+
         public void AskQuestion(int id)
         {
             Question question = list[id];
@@ -55,7 +60,8 @@ namespace BabylonJam
                 word.Text = words[i];
                 word.gameObject.SetActive(true);
                 word.SetBagIndex(i);
-                word.Move(WordBag.Instance.SlotPosition(i), WordBag.Instance.transform);
+                word.transform.SetParent(WordBag.Instance.transform);
+                word.transform.position = WordBag.Instance.SlotPosition(i);
             }
         }
     }

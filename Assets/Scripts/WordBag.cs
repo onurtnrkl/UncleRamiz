@@ -24,7 +24,7 @@ namespace BabylonJam
             }
         }
 
-        private BagSlot[] slots;
+        private Vector2[] slots;
 
         private void Awake()
         {
@@ -36,7 +36,7 @@ namespace BabylonJam
 
         private void CreateSlots()
         {
-            slots = new BagSlot[9];
+            slots = new Vector2[9];
 
             int index = 0;
             float x = 200;
@@ -49,8 +49,7 @@ namespace BabylonJam
                 for (int j = 0; j < 3; j++)
                 {
                     Vector2 position = new Vector2(x, y);
-                    BagSlot slot = new BagSlot(position);
-                    slots[index] = slot;
+                    slots[index] = position;
 
                     index++;
                      y -= 150;
@@ -62,7 +61,7 @@ namespace BabylonJam
 
         public Vector2 SlotPosition(int index)
         {
-            return slots[index].Position;
+            return slots[index];
         }
     }
 }

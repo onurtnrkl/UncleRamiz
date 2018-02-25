@@ -17,17 +17,29 @@ namespace BabylonJam
     internal class WordPool
     {
         private readonly List<Word> words;
+        private Transform poolObject;
 
         public WordPool()
         {
             words = new List<Word>();
             GameObject prefab = Resources.Load<GameObject>("Prefabs/Word");
+            poolObject = new GameObject("Pool").transform;
 
             for (int i = 0; i < 9; i++)
             {
-                Word word = Object.Instantiate(prefab).GetComponent<Word>();
+                Word word = Object.Instantiate(prefab, poolObject).GetComponent<Word>();
                 word.gameObject.SetActive(false);
                 words.Add(word);
+            }
+        }
+
+        public void Reset()
+        {
+            for (int i = 0; i < words.Count; i++)
+            {
+                Debug.Log(i + " reseted.");
+                words[i].gameObject.SetActive(false);
+                words[i].transform.SetParent(poolObject);
             }
         }
 

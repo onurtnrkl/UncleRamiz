@@ -26,41 +26,62 @@ namespace BabylonJam
         }
 
         private string[] answer;
-        private List<Word> current;
+        private List<Word> guess;
+
+        public bool Busy;
 
         public void SetAnswer(string[] answer)
         {
             this.answer = answer;
-            current.Clear();
+            guess.Clear();
         }
 
         public void RegisterWord(Word word)
         {
-            current.Add(word);
-            Debug.Log("Is answer correct: " + IsAnswerCorrect);
+            guess.Add(word);
+        }
+
+        public bool MaxSentence
+        {
+            get
+            {
+                return answer.Length == guess.Count;
+            }
+
         }
 
         public void UnRegisterWord(Word word)
         {
-            current.Remove(word);
+            guess.Remove(word);
             FixedPosition();
         }
 
         private void FixedPosition()
         {
-            for (int i = 0; i < current.Count; i++)
-                current[i].transform.position = IndexPosition(i);
+            for (int i = 0; i < guess.Count; i++)
+                guess[i].transform.position = IndexPosition(i);
+        }
+
+        public void CheckAnswer()
+        {
+            if (IsAnswerCorrect)
+            {
+                Debug.Log("Tebrikler!");
+            }
+            else
+            {
+                Debug.Log("Kaybettin!");
+                QuestionManager.Instance.ResetContext();
+            }
         }
 
         private bool IsAnswerCorrect
         {
             get
             {
-                if (answer.Length != current.Count) return false;
-
                 for (int i = 0; i < answer.Length; i++)
                 {
-                    if (!answer[i].Equals(current[i].Text))
+                    if (!answer[i].Equals(guess[i].Text))
                         return false;
                 }
 
@@ -80,7 +101,7 @@ namespace BabylonJam
         {
             get
             {
-                return IndexPosition(current.Count);
+                return IndexPosition(guess.Count);
             }
         }
 
@@ -89,7 +110,7 @@ namespace BabylonJam
             if (instance == null) instance = this;
             else Destroy(gameObject);
 
-            current = new List<Word>();
+            guess = new List<Word>();
         }
     }
 }
