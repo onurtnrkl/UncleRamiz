@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 433000617}
   - component: {fileID: 433000616}
   m_Layer: 0
-  m_Name: SpeechBubbleManager
+  m_Name: SpeechBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

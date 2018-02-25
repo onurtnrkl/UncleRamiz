@@ -13,13 +13,15 @@ using System;
 namespace BabylonJam
 {
     [Serializable]
-    internal class Question
+    internal class Quest
     {
+        public string Question;
         public string[] Answer;
         public string[] Words;
 
-        public Question()
+        public Quest()
         {
+            Question = "Mahmut";
             Words = new string[9];
             Answer = new string[3];
 

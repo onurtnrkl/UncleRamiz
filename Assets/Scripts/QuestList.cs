@@ -15,21 +15,21 @@ using UnityEngine;
 namespace BabylonJam
 {
     [Serializable]
-    internal class QuestionList
+    internal class QuestList
     {
         [SerializeField]
-        private List<Question> list;
+        private List<Quest> list;
 
-        public QuestionList()
+        public QuestList()
         {
-            list = new List<Question>
+            list = new List<Quest>
             {
-                new Question(),
-                new Question()
+                new Quest(),
+                new Quest()
             };
         }
 
-        public Question this[int index]
+        public Quest this[int index]
         {
             get
             {

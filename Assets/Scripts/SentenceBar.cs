@@ -66,13 +66,13 @@ namespace BabylonJam
         {
             if (IsAnswerCorrect)
             {
-                Debug.Log("Tebrikler!");
+                Grandpa.Instance.Step++;
+                Debug.Log("Correct!");
             }
-            else
-            {
-                Debug.Log("Kaybettin!");
-                QuestionManager.Instance.ResetContext();
-            }
+
+            QuestManager.Instance.ResetContext();
+            Grandpa.Instance.Bubble.Hide();
+            Grandpa.Instance.IsBussy = false;
         }
 
         private bool IsAnswerCorrect

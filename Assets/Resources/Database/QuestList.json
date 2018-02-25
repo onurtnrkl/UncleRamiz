@@ -1,24 +1,7 @@
 {
     "list": [
         {
-            "Answer": [
-                "Who",
-                "are",
-                "you"
-            ],
-            "Words": [
-                "is",
-                "Why",
-                "Who",
-                "My",
-                "are",
-                "they",
-                "our",
-                "am",
-                "you"
-            ]
-        },
-        {
+            "Question": "Hello, my friend!",
             "Answer": [
                 "Who",
                 "are",

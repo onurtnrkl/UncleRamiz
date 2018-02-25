@@ -12,11 +12,11 @@ using UnityEngine;
 
 namespace BabylonJam
 {
-    internal class QuestionManager : MonoBehaviour
+    internal class QuestManager : MonoBehaviour
     {
-        private static QuestionManager instance;
+        private static QuestManager instance;
 
-        public static QuestionManager Instance
+        public static QuestManager Instance
         {
             get
             {
@@ -24,7 +24,7 @@ namespace BabylonJam
             }
         }
 
-        private QuestionList list;
+        private QuestList list;
         private WordPool pool;
         private Animator animator;
 
@@ -33,7 +33,8 @@ namespace BabylonJam
             if (instance == null) instance = this;
             else Destroy(gameObject);
 
-            list = DatabaseManager.Read<QuestionList>("QuestionList");
+            DatabaseManager.Write("test", new Quest());
+            list = DatabaseManager.Read<QuestList>("QuestList");
             pool = new WordPool();
             animator = GetComponent<Animator>();
             ResetContext();
@@ -47,11 +48,16 @@ namespace BabylonJam
             pool.Reset();
         }
 
+        public Quest GetQuest(int id)
+        {
+            return list[id];
+        }
+
         public void AskQuestion(int id)
         {
-            Question question = list[id];
-            AddWordsToBag(question.Words);
-            SentenceBar.Instance.SetAnswer(question.Answer);
+            Quest quest = list[id];
+            AddWordsToBag(quest.Words);
+            SentenceBar.Instance.SetAnswer(quest.Answer);
             animator.SetBool("IsOpen", true);
         }
 

@@ -15,7 +15,7 @@ using UnityEngine.UI;
 
 namespace BabylonJam
 {
-    internal class SpeechBubbleView : MonoBehaviour
+    internal class QuestionBubble : MonoBehaviour
     {
         private Animator animator;
         private Text text;
@@ -40,7 +40,6 @@ namespace BabylonJam
         public void SetDialog(string dialog)
         {
             this.dialog = dialog;
-            dialogText.Capacity = 0;
             dialogText.Length = 0;
         }
 
@@ -52,7 +51,7 @@ namespace BabylonJam
                 text.text = dialogText.ToString();
 
                 if (dialogText.Length < dialog.Length)
-                    yield return new WaitForSeconds(0.2f);
+                    yield return new WaitForSeconds(0.1f);
                 else
                     break;
             }
@@ -65,10 +64,8 @@ namespace BabylonJam
             StartCoroutine(StartSpeech());
         }
 
-        private IEnumerator Hide()
+        public void Hide()
         {
-            yield return new WaitForSeconds(5f);
-
             animator.SetBool("IsOpen", false);
         }
     }    
