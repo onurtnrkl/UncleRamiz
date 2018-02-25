@@ -3,6 +3,19 @@
         {
             "Question": "Hello, my friend!",
             "Answer": [
+                "Hello"
+            ],
+            "Words": [
+                "Bonjour",
+                "Selam",
+                "Hallo",
+                "Salut",
+                "Hello"
+            ]
+        },
+        {
+            "Question": "Do you know me?",
+            "Answer": [
                 "Who",
                 "are",
                 "you"

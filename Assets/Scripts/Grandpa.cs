@@ -28,7 +28,7 @@ namespace BabylonJam
 
         public QuestionBubble Bubble;
         public bool IsBussy;
-        public int Step = 0;
+        private int step = 0;
 
         private void Awake()
         {
@@ -38,14 +38,31 @@ namespace BabylonJam
             Bubble = GetComponentInChildren<QuestionBubble>();
         }
 
+        public void NextStep()
+        {
+            step++;
+            QuestManager.Instance.ResetContext();
+            IsBussy = true;
+            StartCoroutine(Ask());
+        }
+
+        private IEnumerator Ask()
+        {
+            yield return new WaitForSeconds(1f);
+
+            Bubble.SetDialog(QuestManager.Instance.GetQuest(step).Question);
+            Bubble.Show();
+            QuestManager.Instance.AskQuestion(step);
+        }
+
         public void OnPointerClick(PointerEventData pointerEventData)
         {
             if(!IsBussy)
             {
                 IsBussy = true;
-                Bubble.SetDialog(QuestManager.Instance.GetQuest(Step).Question);
+                Bubble.SetDialog(QuestManager.Instance.GetQuest(step).Question);
                 Bubble.Show();
-                QuestManager.Instance.AskQuestion(Step);
+                QuestManager.Instance.AskQuestion(step);
             }
         }
     }    

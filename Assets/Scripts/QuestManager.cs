@@ -38,8 +38,6 @@ namespace BabylonJam
             pool = new WordPool();
             animator = GetComponent<Animator>();
             ResetContext();
-
-            //gameObject.SetActive(false);
         }
 
         public void ResetContext()

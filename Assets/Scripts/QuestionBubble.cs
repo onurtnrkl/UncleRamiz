@@ -64,8 +64,24 @@ namespace BabylonJam
             StartCoroutine(StartSpeech());
         }
 
+        public void Show(float wait)
+        {
+            animator.SetBool("IsOpen", true);
+
+            StartCoroutine(StartSpeech());
+            StartCoroutine(Hide(wait));
+        }
+
+        private IEnumerator Hide(float wait)
+        {
+            yield return new WaitForSeconds(wait);
+
+            Hide();
+        }
+
         public void Hide()
         {
+            Grandpa.Instance.IsBussy = false;
             animator.SetBool("IsOpen", false);
         }
     }    
