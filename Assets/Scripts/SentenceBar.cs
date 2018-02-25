@@ -37,8 +37,7 @@ namespace BabylonJam
         public void RegisterWord(Word word)
         {
             current.Add(word);
-            Debug.Log(word + " registered.");
-            Debug.Log("current length= " + (current.Count));
+            Debug.Log("Is answer correct: " + IsAnswerCorrect);
         }
 
         public void UnRegisterWord(Word word)
@@ -51,6 +50,22 @@ namespace BabylonJam
         {
             for (int i = 0; i < current.Count; i++)
                 current[i].transform.position = IndexPosition(i);
+        }
+
+        private bool IsAnswerCorrect
+        {
+            get
+            {
+                if (answer.Length != current.Count) return false;
+
+                for (int i = 0; i < answer.Length; i++)
+                {
+                    if (!answer[i].Equals(current[i].Text))
+                        return false;
+                }
+
+                return true;
+            }
         }
 
         private Vector2 IndexPosition(int index)
