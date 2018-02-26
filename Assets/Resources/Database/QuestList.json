@@ -14,21 +14,137 @@
             ]
         },
         {
-            "Question": "Do you know me?",
+            "Question": "I am Ramiz.",
             "Answer": [
-                "Who",
-                "are",
+                "Nice", 
+                "to", 
+                "meet",
                 "you"
             ],
             "Words": [
-                "is",
-                "Why",
-                "Who",
-                "My",
+                "meet",
+                "Great",
+                "Nice",
                 "are",
-                "they",
-                "our",
+                "you",
+                "Perfect",
+                "to",
+                "your",
+                "now"
+            ]
+        },
+        {
+            "Question": "Please, help me.",
+            "Answer": [
+                "What", 
+                "do",
+                "you",
+                "want"
+            ],
+            "Words": [
+                "are",
+                "you",
+                "Where",
+                "on",
+                "do",
+                "want",
+                "What",
+                "When",
+                "to"
+            ]
+        },
+        {
+            "Question": "I want to go forest.",
+            "Answer": [
+                "Is", 
+                "forest", 
+                "dangerous"
+            ],
+            "Words": [
+                "dangerous",
+                "forest",
+                "like",
+                "you",
+                "Is",
+                "Am",
+                "Are",
+                "kind",
+                "danger"
+            ]
+        },
+        {
+            "Question": "No. I am old. I need a friend.",
+            "Answer": [
+                "I", 
+                "will",
+                "help", 
+                "you"
+            ],
+            "Words": [
+                "will",
+                "want",
+                "I",
+                "help",
+                "there",
+                "you",
+                "are",
+                "nice",
+                "see"
+            ]
+        },
+        {
+            "Question": "Very good. Do you eat something?",
+            "Answer": [
+                "Yes",
+                "I", 
+                "am", 
+                "hungry"
+            ],
+            "Words": [
+                "not",
+                "I",
+                "hunger",
+                "You",
+                "hungry",
+                "sleepy",
+                "are",
                 "am",
+                "Yes"
+            ]
+        },
+        {
+            "Question": "There is meat. Also there are fruits.",
+            "Answer": [
+                "Which",
+                "fruits"
+            ],
+            "Words": [
+                "Whiches",
+                "fruit",
+                "fruits",
+                "Which",
+                "one",
+                "them",
+                "here",
+                "has",
+                "you"
+            ]
+        },
+        {
+            "Question": "Banana, apple, grape and orange.",
+            "Answer": [
+                "Meat",
+                "please"
+            ],
+            "Words": [
+                "Meat",
+                "Seat",
+                "Heat",
+                "can",
+                "here",
+                "please",
+                "freeze",
+                "have",
                 "you"
             ]
         }

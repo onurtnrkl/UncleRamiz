@@ -24,44 +24,17 @@ namespace BabylonJam
             }
         }
 
-        private Vector2[] slots;
+        [SerializeField]private Transform[] slots;
 
         private void Awake()
         {
             if (instance == null) instance = this;
             else Destroy(gameObject);
-
-            CreateSlots();
-        }
-
-        private void CreateSlots()
-        {
-            slots = new Vector2[9];
-
-            int index = 0;
-            float x = 200;
-            float y = 400;
-
-            for (int i = 0; i < 3; i++)
-            {
-                y = 400;
-
-                for (int j = 0; j < 3; j++)
-                {
-                    Vector2 position = new Vector2(x, y);
-                    slots[index] = position;
-
-                    index++;
-                     y -= 150;
-                }
-
-                x += 340;
-            }
         }
 
         public Vector2 SlotPosition(int index)
         {
-            return slots[index];
+            return slots[index].transform.position;
         }
     }
 }

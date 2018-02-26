@@ -41,18 +41,28 @@ namespace BabylonJam
         public void NextStep()
         {
             step++;
-            QuestManager.Instance.ResetContext();
-            IsBussy = true;
-            StartCoroutine(Ask());
+
+            if (step == 8)
+            {
+                Bubble.SetDialog("Our demo is ending here. Thanks for watching.");
+                Bubble.Show();
+            }
+            else
+            {
+                GameManager.Instance.ResetContext();
+                IsBussy = true;
+                StartCoroutine(Ask());   
+            }
         }
 
         private IEnumerator Ask()
         {
             yield return new WaitForSeconds(1f);
 
-            Bubble.SetDialog(QuestManager.Instance.GetQuest(step).Question);
+            SoundManager.PlayClip(Resources.Load<AudioClip>("Sounds/" + step.ToString()));
+            Bubble.SetDialog(GameManager.Instance.GetQuest(step).Question);
             Bubble.Show();
-            QuestManager.Instance.AskQuestion(step);
+            GameManager.Instance.AskQuestion(step);
         }
 
         public void OnPointerClick(PointerEventData pointerEventData)
@@ -60,9 +70,10 @@ namespace BabylonJam
             if(!IsBussy)
             {
                 IsBussy = true;
-                Bubble.SetDialog(QuestManager.Instance.GetQuest(step).Question);
+                SoundManager.PlayClip(Resources.Load<AudioClip>("Sounds/" + step.ToString()));
+                Bubble.SetDialog(GameManager.Instance.GetQuest(step).Question);
                 Bubble.Show();
-                QuestManager.Instance.AskQuestion(step);
+                GameManager.Instance.AskQuestion(step);
             }
         }
     }    

@@ -25,6 +25,7 @@ namespace BabylonJam
             }
         }
 
+        [SerializeField]private Transform[] slots;
         private string[] answer;
         private List<Word> guess;
 
@@ -70,11 +71,12 @@ namespace BabylonJam
             }
             else
             {
+                SoundManager.PlayClip(Resources.Load<AudioClip>("Sounds/i_dont_understand"));
                 Grandpa.Instance.Bubble.SetDialog("I don't understand.");
                 Grandpa.Instance.Bubble.Show(3f);
             }
                 
-            QuestManager.Instance.ResetContext();
+            GameManager.Instance.ResetContext();
         }
 
         private bool IsAnswerCorrect
@@ -93,8 +95,8 @@ namespace BabylonJam
 
         private Vector2 IndexPosition(int index)
         {
-            float x = (260 * index) + 150;
-            float y = transform.position.y;
+            float x = slots[index].position.x;
+            float y = slots[index].position.y;
 
             return new Vector2(x, y);
         }

@@ -16,14 +16,6 @@ namespace BabylonJam
 {
     public static class DatabaseManager
     {
-		private static bool FileExists(string name, string category = "")
-		{
-			string path = FilePath(name, category);
-			bool exists = File.Exists(path);
-
-			return exists;
-		}
-
         public static T Read<T>(string name, string category = "")
         {
             //TODO: is not exists return new T.

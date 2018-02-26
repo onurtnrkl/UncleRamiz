@@ -57,7 +57,7 @@ namespace BabylonJam
 
         private void OnDisable()
         {
-            target = transform.position;
+            target = transform.localPosition;
             onBag = true;
             isMoving = false;
         }

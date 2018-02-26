@@ -12,11 +12,11 @@ using UnityEngine;
 
 namespace BabylonJam
 {
-    internal class QuestManager : MonoBehaviour
+    internal class GameManager : MonoBehaviour
     {
-        private static QuestManager instance;
+        private static GameManager instance;
 
-        public static QuestManager Instance
+        public static GameManager Instance
         {
             get
             {
@@ -33,10 +33,12 @@ namespace BabylonJam
             if (instance == null) instance = this;
             else Destroy(gameObject);
 
-            DatabaseManager.Write("test", new Quest());
+            GameObject canvas = Instantiate(Resources.Load<GameObject>("Prefabs/Canvas"));
+            canvas.gameObject.SetActive(true);
+            animator = canvas.transform.Find("AnswerContext").GetComponent<Animator>();
+            SoundManager.Create();
             list = DatabaseManager.Read<QuestList>("QuestList");
             pool = new WordPool();
-            animator = GetComponent<Animator>();
             ResetContext();
         }
 
@@ -68,6 +70,7 @@ namespace BabylonJam
                 word.gameObject.SetActive(true);
                 word.SetBagIndex(i);
                 word.transform.SetParent(WordBag.Instance.transform);
+                word.transform.localScale = Vector2.one;
                 word.transform.position = WordBag.Instance.SlotPosition(i);
             }
         }
