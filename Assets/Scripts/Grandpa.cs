@@ -67,7 +67,7 @@ namespace BabylonJam
 
         public void OnPointerClick(PointerEventData pointerEventData)
         {
-            if(!IsBussy)
+            if (!IsBussy)
             {
                 IsBussy = true;
                 SoundManager.PlayClip(Resources.Load<AudioClip>("Sounds/" + step.ToString()));
@@ -75,6 +75,8 @@ namespace BabylonJam
                 Bubble.Show();
                 GameManager.Instance.AskQuestion(step);
             }
+            else
+                Debug.Log("I am bussy");
         }
     }    
 }

@@ -59,7 +59,6 @@ namespace BabylonJam
 
         public void Show()
         {
-            Hide();
             animator.SetBool("IsOpen", true);
             StopCoroutine(StartSpeech());
             StartCoroutine(StartSpeech());

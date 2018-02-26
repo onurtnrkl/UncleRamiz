@@ -22,6 +22,7 @@ namespace BabylonJam
         {
             if(!Grandpa.Instance.IsBussy)
             {
+                Grandpa.Instance.IsBussy = true;
                 SoundManager.PlayClip(Resources.Load<AudioClip>("Sounds/" + audioName));
                 Grandpa.Instance.Bubble.SetDialog(information);
                 Grandpa.Instance.Bubble.Show(information.Length / 5);
