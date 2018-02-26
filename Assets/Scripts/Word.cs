@@ -16,7 +16,6 @@ namespace BabylonJam
 {
     internal class Word : MonoBehaviour, IPointerClickHandler
     {
-        private RectTransform rect;
         private Text text;
         private Vector2 target;
         private int bagIndex = -1;
@@ -51,7 +50,6 @@ namespace BabylonJam
 
         private void Awake()
         {
-            rect = GetComponent<RectTransform>();
             text = GetComponentInChildren<Text>();
         }
 
